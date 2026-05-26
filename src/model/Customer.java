@@ -23,6 +23,15 @@ public class Customer {
     public Customer() {
     }
 
+    // Constructor with parameters
+    public Customer(int idCustomer, String nameCustomer, String phoneCustomer, String addressCustomer, String customerType) {
+        this.idCustomer = idCustomer;
+        this.nameCustomer = nameCustomer;
+        this.phoneCustomer = phoneCustomer;
+        this.addressCustomer = addressCustomer;
+        this.customerType = customerType;
+    }
+
     // ID
     public int getIdCustomer() {
         return idCustomer;

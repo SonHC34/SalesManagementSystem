@@ -21,11 +21,18 @@ public class Product {
 
     // Constructor
     public Product() {
-        
     }
 
-    public void UpdateStockProduct() {
+    public Product(int idProduct, String nameProduct, String categoryProduct, double price, int stockQuantity) {
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.categoryProduct = categoryProduct;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
 
+    public void UpdateStockProduct(int quantity) {
+        this.stockQuantity += quantity;
     }
 
     // ID

@@ -3,7 +3,16 @@ package main;
 import java.util.Scanner;
 import service.CustomerService;
 
-
+/*  
+ *  ==========================================
+ *           SALES MANAGEMENT SYSTEMT         
+ *  ==========================================
+ *  Authors:  
+ *       - Nguyễn Hoàng Duy 
+ *       - Hoàng Công Sơn  
+ *       - Nguyễn Hữu Phúc
+ * 
+*/
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -20,7 +29,7 @@ public class Main {
             System.out.println("  2. Manage Customers");
             System.out.println("  3. Manage Sales Transactions");
             System.out.println("  4. Reports");
-            System.out.println("  5. Close Program");
+            System.out.println("  0. Close Program");
             System.out.print("Enter your choice> ");
             menuChoice = sc.nextInt();
             sc.nextLine();
@@ -28,7 +37,41 @@ public class Main {
             // Choice Options
             switch (menuChoice) {
                 case 1: {   // Product Management 
+                    int productChoice = -1;         // biến điều khiển luồng product management
+                    
+                    do {
+                        System.out.println("======================================");
+                        System.out.format("%27s", "Inventory Management\n");
+                        System.out.println("======================================");
+                        System.out.println("   1. Add New Customer");
+                        System.out.println("   2. Update Customer Information");
+                        System.out.println("   3. Remove Customer");
+                        System.out.println("   4. View All Customer");
+                        System.out.println("   0. Back");
+                        System.out.printf("Enter your choice> ");
+                        productChoice = sc.nextInt();
+                        sc.nextLine();
 
+                        switch (productChoice) {
+                            case 1: {
+                                break;
+                            }
+                            case 2: {
+                                break;
+                            }
+                            case 3: {
+                                break;
+                            }
+                            case 4: {
+                                break;
+                            }
+                            case 0: {
+                                System.out.println("Backing...");
+                            }
+                            default:
+                                break;
+                        }
+                    } while (productChoice != 0);
                     break;
                 }
                 case 2: {   // Customer Mangement
@@ -68,7 +111,7 @@ public class Main {
                                 System.out.println("Backing...");
                             }
                             default:
-                                System.out.println("Invalid input! Please choose again.");
+                                break;
                         }
                     } while (customerChoice != 0);
                     break;                 

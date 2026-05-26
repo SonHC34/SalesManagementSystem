@@ -17,7 +17,7 @@ public class CustomerService {
         String phone;
         String address;
 
-        System.out.println("----------- New Customer -----------");
+        System.out.println("----------- NEW CUSTOMER -----------");
 
         // Input name
         System.out.print("Name: ");
@@ -54,32 +54,112 @@ public class CustomerService {
     }
 
     public void UpdateCustomerInfor() {
+        int updateChoice = -1;
+        String phoneTemp;
+
         System.out.print("----------- Update Customer Information -----------");
         System.out.print("Enter phone number> ");
-        
+        phoneTemp = sc.nextLine();
+
+        // xác định phần tử chứa số điện thoại được nhập
+        int index = FindCustomerIndexbyPhone(phoneTemp);
+        if (index == -1) {
+            System.out.println("This phone number is NOT available");
+            return;
+        } else {
+            System.out.format("Customer: ", customers[index].getNameCustomer());
+        }
+
+        // hiển thị thông tin khách hành xác định
+        System.out.printf("%-5s %-20s %-15s %-25s %-10s\n", "ID", "Name", "Phone number", "Address", "Type");
+        System.out.println("-----------------------------------------------------------------------------");
+
+        System.out.format("%-5d %-20s %-15s %-25s %-10s\n", 
+            customers[index].getIdCustomer(),
+            customers[index].getNameCustomer(),
+            customers[index].getPhoneCustomer(),
+            customers[index].getAddressCustomer(),
+            customers[index].getCustomerType()
+        );
+
+        // thực thi quá trình cập nhật thông tin
+        do {
+            System.out.println("Change customer information: ");
+            System.out.println("  1. Name");
+            System.out.println("  2. Phone number");
+            System.out.println("  3. Address");
+            System.out.println("Enter your choice> ");
+            updateChoice = sc.nextInt();
+            sc.nextLine();
+
+            switch (updateChoice) {
+                case 1: {   // Name
+                    String newName;
+
+                    System.out.print("New Name: ");
+                    newName = sc.nextLine();
+
+                    customers[index].setNameCustomer(newName);
+                }
+                case 2: {   // Phone
+                    String newPhone;
+
+                    System.out.print("New phone number: ");
+                    newPhone = sc.nextLine();
+
+                    customers[index].setPhoneCustomer(newPhone);
+                }
+                case 3: {   // Address
+                    String newAddress;
+
+                    System.out.print("New address: ");
+                    newAddress = sc.nextLine();
+
+                    customers[index].setAddressCustomer(newAddress);
+                }
+                case 0: {
+                    System.out.println("Backing...");
+                }
+                default:
+                    System.out.println("Nhap sai roi nhe!");
+                    break;
+            }
+        } while (updateChoice != 0);      
     }
 
     // =====================================================================================================
 
     public void RemoveCustomer() {
-        System.out.println("----------- Remove Customer -----------");
+        int verify;
+
+        System.out.println("----------- REMOVE CUSTOMER -----------");
         System.out.print("Enter customer phone number> ");
         String phone = sc.nextLine();
 
+        //  xác định phần tử chứa số điện thoại được nhập
         int index = FindCustomerIndexbyPhone(phone);
         if (index == -1) {
-            System.out.println("The phone number cannot find");
+            System.out.println("The phone number is NOT available");
             return;
         }
-        // xóa phần tử bằng cách dịch chuyển các phần tử phía sau lên 1 vị trí
-        for (int i = 0; i < countCustomer - 1; i++) {
-            customers[i] = customers[i + 1];
-        }
 
-        // cập nhật biến đếm và thông báo
-        customers[countCustomer - 1] = null; 
-        countCustomer--;
-        System.out.println("Customer removed successfully!");
+        // xóa phần tử bằng cách dịch chuyển các phần tử phía sau lên 1 vị trí
+        System.out.print("Do you sure to remove? [YES: 1/ NO: 0");
+        verify = sc.nextInt();
+
+        // xác nhận quá trình, xóa = 1/ hủy = 0;
+        if (verify == 1) {
+            for (int i = 0; i < countCustomer - 1; i++) {
+            customers[i] = customers[i + 1];
+
+            // cập nhật biến đếm
+            customers[countCustomer - 1] = null; 
+            countCustomer--;
+            System.out.println("Customer removed successfully!");
+        }
+        } else {
+            System.out.println("The process is canceled. Returning ...");
+        }
     }
 
     // =====================================================================================================
@@ -93,7 +173,7 @@ public class CustomerService {
             return;
         }
 
-        System.out.printf("%-5s %-20s %-15s %-25s %-10s\n", "ID", "Name", "Phone", "Address", "Type");
+        System.out.printf("%-5s %-20s %-15s %-25s %-10s\n", "ID", "Name", "Phone number", "Address", "Type");
         System.out.println("-----------------------------------------------------------------------------");
         
         // duyệt các phần tử theo mảng để hiện từng phần tử
@@ -111,8 +191,13 @@ public class CustomerService {
 
     // =====================================================================================================
 
-    // Các hàm thêm vào ngoài các hàm chính trên UML
-    // nhiệm vụ là tìm số điện thoại bị trùng trong mảng customers
+    /*
+     * Danh sách các hàm thêm vào, ngoài các hàm chính trên UML. 
+     * Mục đích để tăng sự quản lí của lớp CustomerService
+     * 
+    */ 
+
+    // kiếm tra sự trùng lặp phần tử số điện thoại trong mảng customers
     private boolean IsPhoneUnique(String phone) {
         for (int i = 0; i < countCustomer; i++) {
             if (customers[i].getPhoneCustomer().equals(phone)) {
@@ -129,7 +214,7 @@ public class CustomerService {
             return -1;
         }
 
-        // tìm vị trí phần tử chứ sdt trùng với input 
+        // tìm vị trí phần tử chứa sdt trùng với input 
         for (int i = 0; i< countCustomer; i++) {
             if (customers[i].getPhoneCustomer().equals(phone)) {
                 return i;       
