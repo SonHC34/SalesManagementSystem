@@ -17,22 +17,13 @@ public class Product {
     private String nameProduct;
     private String categoryProduct; 
     private double price;
-    private int stockQuantity;
 
     // Constructor
-    public Product() {
-    }
-
-    public Product(int idProduct, String nameProduct, String categoryProduct, double price, int stockQuantity) {
+    public Product(int idProduct, String nameProduct, String categoryProduct, double price) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.categoryProduct = categoryProduct;
         this.price = price;
-        this.stockQuantity = stockQuantity;
-    }
-
-    public void UpdateStockProduct(int quantity) {
-        this.stockQuantity += quantity;
     }
 
     // ID
@@ -70,15 +61,51 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+    //nhap ma ten va gia cho san pham
+    public void addNewProduct(){
+        System.out.println("ID: ");
+             idProduct= sc.nextInt();
+             sc.nextLine(); // bỏ dognf thừa
 
-    // Stock Quantity
-    public int getStockQuantity() {
-        return stockQuantity;
+             System.out.println("Name: ");
+             nameProduct=sc.nextLine();
+
+             System.out.println("Category; ");
+             categoryProduct=sc.nextLine();
+
+             System.out.println("Price: ");
+             price=sc.nextDouble();
     }
+    //update product
+    public void updateProduct (int idProduct, String  nameProduct , String categoryProduct, double price){
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.categoryProduct = categoryProduct;
+        this.price = price;
 
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    } 
-    
+    }
+    //remove product
+    public void removeProduct(){
+        this.idProduct = 0;
+        this.nameProduct = null;
+        this.categoryProduct = null;
+        this.price = 0.0;
+    }
+    //view all product
+    public void viewAllProduct (){
+        System.out.println("ID: " + idProduct);
+        System.out.println("Name: " + nameProduct);
+        System.out.println("Category: " + categoryProduct);
+        System.out.println("Price: " + price);
+    }
+    //Search products by name or category.
+    public boolean searchProduct(String keyword){
+        if ((nameProduct != null && nameProduct.equalsIgnoreCase(keyword)) || (categoryProduct != null && categoryProduct.equalsIgnoreCase(keyword))) {
+        viewAllProduct();
+        return true;
+    }
+    return false;
+    }
 }
+
 
