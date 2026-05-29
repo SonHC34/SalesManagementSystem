@@ -35,6 +35,9 @@ public class Product {
         this.stockQuantity += quantity;
     }
 
+    // ===================================================================================================== 
+    // Vung setter & getter cua cac fields
+
     // ID
     public int getIdProduct() {
         return idProduct;
@@ -68,16 +71,16 @@ public class Product {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        this.price = price;            // thêm điều kiện price ko đc âm
     }
 
     // Stock Quantity
     public int getStockQuantity() {
-        return stockQuantity;
+        return stockQuantity;         
     }
 
     public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
+        this.stockQuantity = stockQuantity;     // thêm điều kiện stock quantity ko đc âm
     } 
     
 }

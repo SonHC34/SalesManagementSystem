@@ -1,7 +1,8 @@
 package service;
 
 import java.util.Scanner;
-import model.Customer;
+
+import model.customer.Customer;
 import util.Validators;
 
 public class CustomerService {
@@ -12,17 +13,19 @@ public class CustomerService {
     // =====================================================================================================
 
     public void AddNewCustomer() {
-        Customer p = new Customer();
         String name;
         String phone;
         String address;
+        boolean running = true;
+        int temp;
 
-        System.out.println("----------- NEW CUSTOMER -----------");
+        // Dung vong lap de nhap lien tuc
+        do {
+            System.out.println("----------- NEW CUSTOMER -----------");
 
         // Input name
         System.out.print("Name: ");
         name = sc.nextLine();
-        p.setNameCustomer(name);
 
         // Input phone number
         while (true) {
@@ -38,19 +41,27 @@ public class CustomerService {
                 System.out.println("This phone number is available");
                 continue;
             }
-            p.setPhoneCustomer(phone);
             break;
         }
 
         // Input address
         System.out.print("Address: ");
-        address = sc.nextLine();
-        p.setAddressCustomer(address);        
+        address = sc.nextLine();    
 
         // Update information
+        Customer p = new Customer(countCustomer + 1, name, phone, address);
         customers[countCustomer] = p;
         countCustomer++;
         System.out.println("Add new customer successfully!");
+
+        // Hoi user nhap tiep ko
+        System.out.println("Would you like to add more? [YES: 1/ NO: 0]");
+        temp = sc.nextInt();
+        
+        // Dung toan tu de quyet dinh 
+        running = temp == 1 ? true : false;
+
+        } while (running != false);
     }
 
     public void UpdateCustomerInfor() {
@@ -71,9 +82,10 @@ public class CustomerService {
         }
 
         // hiển thị thông tin khách hành xác định
-        System.out.printf("%-5s %-20s %-15s %-25s %-10s\n", "ID", "Name", "Phone number", "Address", "Type");
+        System.out.printf("%-5s %-20s %-15s %-25s %-10s\n", "ID", "Name", "Phone", "Address", "Type");
         System.out.println("-----------------------------------------------------------------------------");
 
+        // format 5 - 20 - 15 - 25 - 10
         System.out.format("%-5d %-20s %-15s %-25s %-10s\n", 
             customers[index].getIdCustomer(),
             customers[index].getNameCustomer(),
@@ -148,11 +160,13 @@ public class CustomerService {
         }
 
         // xóa phần tử bằng cách dịch chuyển các phần tử phía sau lên 1 vị trí
-        System.out.print("Do you sure to remove? [YES: 1/ NO: 0");
+        System.out.print("Do you sure to remove? [YES: 1/ NO: 0]: ");
         verify = sc.nextInt();
+        sc.nextLine();
 
         // xác nhận quá trình, xóa = 1/ hủy = 0;
         if (verify == 1) {
+            // xóa phần tử bằng việc dịch lùi phần tử
             for (int i = 0; i < countCustomer - 1; i++) {
             customers[i] = customers[i + 1];
 
@@ -177,7 +191,8 @@ public class CustomerService {
             return;
         }
 
-        System.out.printf("%-5s %-20s %-15s %-25s %-10s\n", "ID", "Name", "Phone number", "Address", "Type");
+        // format 5 - 20 - 15 - 25 - 10
+        System.out.printf("%-5s %-20s %-15s %-25s %-10s\n", "ID", "Name", "Phone", "Address", "Type");
         System.out.println("-----------------------------------------------------------------------------");
         
         // duyệt các phần tử theo mảng để hiện từng phần tử
@@ -228,4 +243,5 @@ public class CustomerService {
         // trả về -1 nếu không tìm thấy sau khi duyệt hết mảng
         return -1;
     }
+
 }

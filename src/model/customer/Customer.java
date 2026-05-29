@@ -1,9 +1,9 @@
-package model;
+package model.customer;
 
 /*
 Các quy tắc đặt tên: 
 Fields: 
-- idCustomer: int
+- idCustomer: int         (format nên là: C001)
 - nameCustomer: String
 - phoneCustomer: String
 - addressCustomer: String
@@ -24,13 +24,15 @@ public class Customer {
     }
 
     // Constructor with parameters
-    public Customer(int idCustomer, String nameCustomer, String phoneCustomer, String addressCustomer, String customerType) {
-        this.idCustomer = idCustomer;
+    public Customer(int idCustomer, String nameCustomer, String phoneCustomer, String addressCustomer) {
+        this.idCustomer = idCustomer;           
         this.nameCustomer = nameCustomer;
         this.phoneCustomer = phoneCustomer;
         this.addressCustomer = addressCustomer;
-        this.customerType = customerType;
     }
+
+    // =====================================================================================================
+    // Vung setter & getter cua cac fields
 
     // ID
     public int getIdCustomer() {

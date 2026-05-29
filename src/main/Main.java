@@ -2,6 +2,7 @@ package main;
 
 import java.util.Scanner;
 import service.CustomerService;
+import service.ProductManagement;
 
 /*  
  *  ==========================================
@@ -19,6 +20,7 @@ public class Main {
         int menuChoice;                    // biến điều kiển luồng menu
         Scanner sc = new Scanner(System.in);
         CustomerService customerService = new CustomerService();
+        ProductManagement productManagement = new ProductManagement();
 
         // Menu Interface
         do {
@@ -54,15 +56,19 @@ public class Main {
 
                         switch (productChoice) {
                             case 1: {
+                                productManagement.AddNewProduct();
                                 break;
                             }
                             case 2: {
+                                productManagement.UpdateProduct();
                                 break;
                             }
                             case 3: {
+                                productManagement.RemoveProduct();
                                 break;
                             }
                             case 4: {
+                                productManagement.ViewAllProduct();
                                 break;
                             }
                             case 0: {
@@ -117,7 +123,41 @@ public class Main {
                     break;                 
                 }
                 case 3: {   // Sales Transaction Management
+                    int transactionChoice = -1;
                     
+                    do {
+                        System.out.println("======================================");
+                        System.out.format("%27s", "Sales Transaction\n");
+                        System.out.println("======================================");
+                        System.out.println("   1. Create New Transaction");
+                        System.out.println("   2. Calculate Total Bill");
+                        System.out.println("   3. Update or Cancel Transaction");
+                        System.out.println("   4. View Transaction History");
+                        System.out.println("   0. Back");
+                        System.out.printf("Enter your choice> ");
+                        transactionChoice = sc.nextInt();
+                        sc.nextLine();
+
+                        switch (transactionChoice) {
+                            case 1: {
+                                break;
+                            }
+                            case 2: {
+                                break;
+                            }
+                            case 3: {
+                                break;
+                            }
+                            case 4: {
+                                break;
+                            }
+                            case 0: {
+                                break;
+                            }
+                            default:
+                                break;
+                        }
+                    } while (transactionChoice != 0);
                     break;
                 }
                 case 4: {   // Report Service
