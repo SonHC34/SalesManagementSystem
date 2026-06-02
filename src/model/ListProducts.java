@@ -29,5 +29,19 @@ public class ListProducts{
             }
         }
     }
+    //remove
+    public void removeProductById(int id) {
+    for (int i = 0; i < count; i++) {
+        if (arr[i].getIdProduct() == id) {
+            for (int j = i; j < count - 1; j++) {
+                arr[j] = arr[j + 1];
+            }
+            arr[count - 1] = null;
+            count--;
+            return;
+        }
+    }
+}
+
     
 }

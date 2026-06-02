@@ -17,13 +17,15 @@ public class Product {
     private String nameProduct;
     private String categoryProduct; 
     private double price;
+    private int stockQuantity;
 
     // Constructor
-    public Product(int idProduct, String nameProduct, String categoryProduct, double price) {
+    public Product(int idProduct, String nameProduct, String categoryProduct, double price, int stockQuantity) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.categoryProduct = categoryProduct;
         this.price = price;
+        this.stockQuantity = stockQuantity;
     }
 
     // ID
@@ -61,8 +63,18 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+    //stock 
+    public int getStockQuantity() {
+        return this.stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+    
     //nhap ma ten va gia cho san pham
     public void addNewProduct(){
+        Scanner sc = new Scanner (System.in);
         System.out.println("ID: ");
              idProduct= sc.nextInt();
              sc.nextLine(); // bỏ dognf thừa
@@ -82,15 +94,6 @@ public class Product {
         this.nameProduct = nameProduct;
         this.categoryProduct = categoryProduct;
         this.price = price;
-
-    }
-    //remove product
-    public void removeProduct(){
-        this.idProduct = 0;
-        this.nameProduct = null;
-        this.categoryProduct = null;
-        this.price = 0.0;
-    }
     //view all product
     public void viewAllProduct (){
         System.out.println("ID: " + idProduct);
@@ -99,13 +102,22 @@ public class Product {
         System.out.println("Price: " + price);
     }
     //Search products by name or category.
-    public boolean searchProduct(String keyword){
-        if ((nameProduct != null && nameProduct.equalsIgnoreCase(keyword)) || (categoryProduct != null && categoryProduct.equalsIgnoreCase(keyword))) {
-        viewAllProduct();
-        return true;
+    public void searchProduct(String keyword) {
+    boolean found = false;
+    for (int i = 0; i < count; i++) 
+    {
+        if (arr[i].getNameProduct().equalsIgnoreCase(keyword) || arr[i].getCategoryProduct().equalsIgnoreCase(keyword)) {
+            arr[i].viewAllProduct();
+            found = true;
+        }
     }
-    return false;
+    if (!found) 
+    {
+        System.out.println("No product found with keyword: " + keyword);
     }
-}
+    }
+
+
+
 
 
