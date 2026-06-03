@@ -20,9 +20,6 @@ public class Product {
     private int stockQuantity;
 
     // Constructor
-    public Product() {
-    }
-
     public Product(int idProduct, String nameProduct, String categoryProduct, double price, int stockQuantity) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
@@ -30,13 +27,6 @@ public class Product {
         this.price = price;
         this.stockQuantity = stockQuantity;
     }
-
-    public void UpdateStockProduct(int quantity) {
-        this.stockQuantity += quantity;
-    }
-
-    // ===================================================================================================== 
-    // Vung setter & getter cua cac fields
 
     // ID
     public int getIdProduct() {
@@ -71,17 +61,61 @@ public class Product {
     }
 
     public void setPrice(double price) {
-        this.price = price;            // thêm điều kiện price ko đc âm
+        this.price = price;
     }
-
-    // Stock Quantity
+    //stock 
     public int getStockQuantity() {
-        return stockQuantity;         
+        return this.stockQuantity;
     }
 
     public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;     // thêm điều kiện stock quantity ko đc âm
-    } 
+        this.stockQuantity = stockQuantity;
+    }
     
-}
+    //nhap ma ten va gia cho san pham
+    public void addNewProduct(){
+        Scanner sc = new Scanner (System.in);
+        System.out.println("ID: ");
+             idProduct= sc.nextInt();
+             sc.nextLine(); // bỏ dognf thừa
 
+             System.out.println("Name: ");
+             nameProduct=sc.nextLine();
+
+             System.out.println("Category; ");
+             categoryProduct=sc.nextLine();
+
+             System.out.println("Price: ");
+             price=sc.nextDouble();
+    }
+    //update product
+    public void updateProduct (int idProduct, String  nameProduct , String categoryProduct, double price){
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.categoryProduct = categoryProduct;
+        this.price = price;
+    }
+    //view all product
+    public void viewAllProduct (){
+        System.out.println("ID: " + idProduct);
+        System.out.println("Name: " + nameProduct);
+        System.out.println("Category: " + categoryProduct);
+        System.out.println("Price: " + price);
+    }
+    //Search products by name or category.
+    public void searchProduct(String keyword) {
+    boolean found = false;
+    for (int i = 0; i < count; i++) 
+    {
+        if (arr[i].getNameProduct().equalsIgnoreCase(keyword) || arr[i].getCategoryProduct().equalsIgnoreCase(keyword)) {
+            arr[i].viewAllProduct();
+            found = true;
+        }
+    }
+    if (!found) 
+    {
+        System.out.println("No product found with keyword: " + keyword);
+    }
+    }
+}
+    
