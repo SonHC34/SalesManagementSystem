@@ -94,6 +94,7 @@ public class Product {
         this.nameProduct = nameProduct;
         this.categoryProduct = categoryProduct;
         this.price = price;
+    }
     //view all product
     public void viewAllProduct (){
         System.out.println("ID: " + idProduct);
@@ -116,6 +117,8 @@ public class Product {
         System.out.println("No product found with keyword: " + keyword);
     }
     }
+}
+    
 
 
 
