@@ -1,8 +1,19 @@
-packet model;
+package model;
 
-public class ProductManagement{
-    Product[] arr = new Product[100];
-    int count = 0;
+import java.util.Scanner;
+
+public class ProductManagement {
+    //private để đóng dữ liệu
+    private Product[] arr = new Product[100];
+    private int count = 0;
+
+    // Getter để lớp Inventory có thể tiếp cận danh sách sản phẩm
+    public Product[] getArr() {
+        return arr;
+    }
+    public int getCount() {
+        return count;
+    }
 
     //addProducts
     public void addMoreProducts (){ 
@@ -38,10 +49,26 @@ public class ProductManagement{
             }
             arr[count - 1] = null;
             count--;
+            System.out.println("Xóa thành công sản phẩm ID: " + id);
             return;
         }
     }
-}
-
+    System.out.println("Không tìm thấy sản phẩm cần xóa.");
+    }
+    //Search products by name or category.
+    public void searchProduct(String keyword) {
+    boolean found = false;
+    for (int i = 0; i < count; i++) 
+    {
+        if (arr[i].getNameProduct().equalsIgnoreCase(keyword) || arr[i].getCategoryProduct().equalsIgnoreCase(keyword)) {
+            arr[i].viewAllProduct();
+            found = true;
+        }
+    }
+    if (!found) {
+        System.out.println("No product found with keyword: " + keyword);
+    }
     
+    
+}
 }

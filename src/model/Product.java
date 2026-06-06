@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Scanner;
+
 /*
 Các quy tắc đặt tên:
 Fields: 
@@ -20,6 +22,10 @@ public class Product {
     private int stockQuantity;
 
     // Constructor
+    //constructor mặc định
+    public Product (){
+
+    }
     public Product(int idProduct, String nameProduct, String categoryProduct, double price, int stockQuantity) {
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
@@ -71,6 +77,10 @@ public class Product {
     public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
+    // Phương thức cập nhật số lượng kho (Yêu cầu cơ bản / BR7)
+    public void updateStockQuantity(int quantity) {
+        this.stockQuantity += quantity; 
+    }
     
     //nhap ma ten va gia cho san pham
     public void addNewProduct(){
@@ -87,6 +97,10 @@ public class Product {
 
              System.out.println("Price: ");
              price=sc.nextDouble();
+
+             System.out.print("Stock Quantity: ");
+             stockQuantity = sc.nextInt();
+            
     }
     //update product
     public void updateProduct (int idProduct, String  nameProduct , String categoryProduct, double price){
@@ -101,21 +115,8 @@ public class Product {
         System.out.println("Name: " + nameProduct);
         System.out.println("Category: " + categoryProduct);
         System.out.println("Price: " + price);
+        System.out.println("Stock: " + stockQuantity);
     }
-    //Search products by name or category.
-    public void searchProduct(String keyword) {
-    boolean found = false;
-    for (int i = 0; i < count; i++) 
-    {
-        if (arr[i].getNameProduct().equalsIgnoreCase(keyword) || arr[i].getCategoryProduct().equalsIgnoreCase(keyword)) {
-            arr[i].viewAllProduct();
-            found = true;
-        }
-    }
-    if (!found) 
-    {
-        System.out.println("No product found with keyword: " + keyword);
-    }
-    }
+    
 }
     
