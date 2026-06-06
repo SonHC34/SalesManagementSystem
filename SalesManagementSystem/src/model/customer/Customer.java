@@ -1,13 +1,9 @@
-package model;
-
-import javax.xml.validation.Validator;
-
-import util.Validators;
+package model.customer;
 
 /*
 Các quy tắc đặt tên: 
 Fields: 
-- idCustomer: int
+- idCustomer: int         (format nên là: C001)
 - nameCustomer: String
 - phoneCustomer: String
 - addressCustomer: String
@@ -26,6 +22,23 @@ public class Customer {
     // Constructor
     public Customer() {
     }
+
+    // Constructor with parameters
+    public Customer(int idCustomer, String nameCustomer, String phoneCustomer, String addressCustomer) {
+        this.idCustomer = idCustomer;           
+        this.nameCustomer = nameCustomer;
+        this.phoneCustomer = phoneCustomer;
+        this.addressCustomer = addressCustomer;
+    }
+
+    public Customer(String nameCustomer, String phoneCustomer, String addressCustomer) {
+        this.nameCustomer = nameCustomer;
+        this.phoneCustomer = phoneCustomer;
+        this.addressCustomer = addressCustomer;
+    }
+
+    // =====================================================================================================
+    // Vung setter & getter cua cac fields
 
     // ID
     public int getIdCustomer() {
@@ -51,12 +64,7 @@ public class Customer {
     }
 
     public void setPhoneCustomer(String phoneCustomer) {
-        Validators v = new Validators();
-        boolean temp;
-
-        if (v.PhoneValidation(phoneCustomer)) {
-            this.phoneCustomer = phoneCustomer;
-        } 
+        this.phoneCustomer = phoneCustomer;
     }
 
     // Address

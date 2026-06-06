@@ -21,11 +21,67 @@ public class Product {
 
     // Constructor
     public Product() {
-        
     }
 
-    public void UpdateStockProduct() {
-
+    public Product(int idProduct, String nameProduct, String categoryProduct, double price, int stockQuantity) {
+        this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
+        this.categoryProduct = categoryProduct;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
     }
+
+    public void UpdateStockProduct(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    // ===================================================================================================== 
+    // Vung setter & getter cua cac fields
+
+    // ID
+    public int getIdProduct() {
+        return idProduct;
+    }
+
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
+    }
+    
+    // Name
+    public String getNameProduct() {
+        return nameProduct;
+    }
+
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
+    }
+
+    // Category product
+    public String getCategoryProduct() {
+        return categoryProduct;
+    }
+
+    public void setCategoryProduct(String categoryProduct) {
+        this.categoryProduct = categoryProduct;
+    }
+
+    // Price
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;            // thêm điều kiện price ko đc âm
+    }
+
+    // Stock Quantity
+    public int getStockQuantity() {
+        return stockQuantity;         
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;     // thêm điều kiện stock quantity ko đc âm
+    } 
+    
 }
 
