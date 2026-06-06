@@ -33,7 +33,7 @@ public class Product {
         this.price = price;
         this.stockQuantity = stockQuantity;
     }
-
+    
     // ID
     public int getIdProduct() {
         return idProduct;
