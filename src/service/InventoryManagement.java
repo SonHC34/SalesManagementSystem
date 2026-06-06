@@ -1,7 +1,6 @@
 package service;
 
 import model.Product;
-import model.ProductManagement;
 
 public class InventoryManagement {
     private Product[] inventory;
